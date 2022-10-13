@@ -19,3 +19,10 @@
 	<GL/glu.h>
 	<stdlib.h>
 
+1665659684 source:c:\users\acer\documents\train\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	<GL/glut.h>
+
