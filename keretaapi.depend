@@ -19,10 +19,10 @@
 	<GL/glu.h>
 	<stdlib.h>
 
-1665659684 source:c:\users\acer\documents\train\main.cpp
-	<iostream>
-	<stdio.h>
+1665834347 source:c:\users\acer\documents\train\main.cpp
 	<stdlib.h>
-	<unistd.h>
+	<stdio.h>
+	<math.h>
+	<time.h>
 	<GL/glut.h>
 

@@ -130,7 +130,7 @@ void Draw_Road (void)
     glEnable (GL_LIGHTING);
 
     glPushMatrix();
-       glTranslatef (0.0, -25.0, 0.0);
+       glTranslatef (15.0, -25.0, 0.0);
        glScalef     (10.0, 0.3,3.0);
        glutSolidCube (-20.0f);
     glPopMatrix();
@@ -146,6 +146,14 @@ void Render_Wheel (int xt, int yt, int zt)
     glPopMatrix();
 }
 
+void Render_WheelB (int xt, int yt, int zt)
+{
+    glPushMatrix();
+       glTranslatef   (xt, yt, zt);
+       glutSolidTorus (2,7,15,40);
+    glPopMatrix();
+}
+
 //-----------------------------------------   Draw_Car   -------------------------------------------
 
 void Draw_Car (void)
@@ -154,22 +162,31 @@ void Draw_Car (void)
 
     glBegin (GL_QUADS);
        glColor3f (0.3, 0.6, 0.6);
-       Vrt(-40,  0, 15); Vrt( 40,  0, 15); Vrt( 40,-15, 15); Vrt(-40,-15, 15);  // left
-       Vrt(-40,  0,-15); Vrt( 40,  0,-15); Vrt( 40,-15,-15); Vrt(-40,-15,-15);  // right
+       Vrt(-45,  0, 15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt(-50,-15, 15);  // left
+       Vrt(-45,  0,-15); Vrt( 10,  0,-15); Vrt( 10,-15,-15); Vrt(-50,-15,-15);  // right
        glColor3f (0.4, 0.6, 0.6);
-       Vrt( 40,  0,-15); Vrt( 40,  0, 15); Vrt( 40,-15, 15); Vrt( 40,-15,-15);  // back
-       Vrt(-40,  0,-15); Vrt(-40,  0, 15); Vrt(-40,-15, 15); Vrt(-40,-15,-15);  // front
+       Vrt( 10,  0,-15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt( 10,-15,-15);  // back
+       Vrt(-45,  0,-15); Vrt(-45,  0, 15); Vrt(-50,-15, 15); Vrt(-50,-15,-15);  // front
        glColor3f (0.4, 0.6, 0.8);
-       Vrt(-40,  0, 15); Vrt(-40,  0,-15); Vrt( 40,  0,-15); Vrt( 40,  0, 15);  // trunks
-       Vrt(-10, 10, 15); Vrt(-10, 10,-15); Vrt( 20, 10,-15); Vrt( 20, 10, 15);  // roof
+       Vrt(-20, 20, 15); Vrt(-20, 20,-15); Vrt( 10, 20,-15); Vrt( 10, 20, 15);  // roof
        glColor3f (0.7, 0.7, 0.5);
-       Vrt(-20,  0, 15); Vrt(-10, 10, 15); Vrt( 20, 10, 15); Vrt( 25,  0, 15);  // window l
-       Vrt(-20,  0,-15); Vrt(-10, 10,-15); Vrt( 20, 10,-15); Vrt( 25,  0,-15);  // window r
+       Vrt(-20,  0, 15); Vrt(-20, 20, 15); Vrt( 10, 20, 15); Vrt( 10,  0, 15);  // window l
+       Vrt(-20,  0,-15); Vrt(-20, 20,-15); Vrt( 10, 20,-15); Vrt( 10,  0,-15);  // window r
        glColor3f (0.7, 0.6, 0.5);
-       Vrt(-10, 10, 15); Vrt(-20,  0, 15); Vrt(-20,  0,-15); Vrt(-10, 10,-15);  // windshield
-       Vrt( 20, 10, 15); Vrt( 20, 10,-15); Vrt( 25,  0,-15); Vrt( 25,  0, 15);  // rear window
+       Vrt(-20, 20, 15); Vrt(-20,  0, 15); Vrt(-20,  0,-15); Vrt(-20, 20,-15);  // kaca depan
+       Vrt( 10, 20, 15); Vrt( 10, 20,-15); Vrt( 10,  0,-15); Vrt( 10,  0, 15);  // kaca belakang
        glColor3f (0.4, 0.5, 0.5);
-       Vrt(-40,-15, 15); Vrt(-40,-15,-15); Vrt( 40,-15,-15); Vrt( 40,-15, 15);  // bottom
+       Vrt(-50,-15, 15); Vrt(-50,-15,-15); Vrt( 10,-15,-15); Vrt( 10,-15, 15);  // bottom
+       Vrt(-45,0, 15); Vrt(-45,0,-15); Vrt( -20,0,-15); Vrt( -20,0, 15);  // bagasi
+
+       //gerbong
+       glColor3f (0.7, 0.6, 0.5);
+       Vrt( 25, 15, 15); Vrt( 25, 15,-15); Vrt( 25,  0,-15); Vrt( 25,  0, 15); //kaca depan
+       glColor3f (0.4, 0.6, 0.6);
+       Vrt( 25,  0,-15); Vrt( 25,  0, 15); Vrt( 25,-15, 15); Vrt( 25,-15,-15); // depan
+       glColor3f (0.3, 0.6, 0.6);
+       Vrt(25,  0, 15); Vrt( 75,  0, 15); Vrt(75,-15, 15); Vrt(25,-15, 15);  // left
+       Vrt(25,  0,-15); Vrt( 75,  0,-15); Vrt(75,-15,-15); Vrt(25,-15,-15);  // right
     glEnd ();
 
 
@@ -177,10 +194,10 @@ void Draw_Car (void)
 
      glEnable     (GL_LIGHTING);
      glColor3f    (0.3, 0.3, 0.3);
-     Render_Wheel (-20,-15, 15);
-     Render_Wheel ( 20,-15, 15);
-     Render_Wheel (-20,-15,-15);
-     Render_Wheel ( 20,-15,-15);
+     Render_Wheel (-35,-15, 17);
+     Render_WheelB ( -2.5,-13, 17);
+     Render_Wheel (-35,-15,-17);
+     Render_WheelB ( 2.5,-13,-17);
 }
 
 //------------------------------------------   Poster's Display   ----------------------------------
