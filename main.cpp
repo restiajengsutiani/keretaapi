@@ -44,10 +44,10 @@ void Keybord (unsigned char ch, int x, int y)
                    scl  = 1.0;               break;
        case '-' :  scl *= 0.92;              break;
        case '+' :  scl *= 1.06;              break;
-       case 'd' :  xcr += 2.00;              break;
-       case 'D' :  xcr -= 2.00;              break;
+       case 'a' :  xcr += 2.00;              break;
+       case 'd' :  xcr -= 2.00;              break;
 
-       case  27 :  exit (0);                 break;
+       case 'e' :  exit (0);                 break;
     }
 
     glutPostRedisplay();
