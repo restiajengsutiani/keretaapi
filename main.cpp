@@ -224,6 +224,7 @@ void Draw_Car (void)
 {
     glDisable (GL_LIGHTING);
 
+    // gerb0ng depan
     glBegin (GL_QUADS);
        glColor3f (0.3, 0.6, 0.6);
        Vrt(-45,  0, 15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt(-50,-15, 15);  // left
@@ -231,8 +232,6 @@ void Draw_Car (void)
        glColor3f (0.4, 0.6, 0.6);
        Vrt( 10,  0,-15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt( 10,-15,-15);  // back
        Vrt(-45,  0,-15); Vrt(-45,  0, 15); Vrt(-50,-15, 15); Vrt(-50,-15,-15);  // front
-       glColor3f (0.4, 0.6, 0.8);
-       Vrt(-20, 20, 15); Vrt(-20, 20,-15); Vrt( 10, 20,-15); Vrt( 10, 20, 15);  // roof
        glColor3f (0.7, 0.7, 0.5);
        Vrt(-20,  0, 15); Vrt(-20, 20, 15); Vrt( 10, 20, 15); Vrt( 10,  0, 15);  // window l
        Vrt(-20,  0,-15); Vrt(-20, 20,-15); Vrt( 10, 20,-15); Vrt( 10,  0,-15);  // window r
@@ -243,6 +242,19 @@ void Draw_Car (void)
        Vrt(-50,-15, 15); Vrt(-50,-15,-15); Vrt( 10,-15,-15); Vrt( 10,-15, 15);  // bottom
        Vrt(-45,0, 15); Vrt(-45,0,-15); Vrt( -20,0,-15); Vrt( -20,0, 15);  // bagasi
        glEnd ();
+
+       //atap gerbong depan
+    glBegin (GL_TRIANGLES);
+       glColor3f (0.4, 0.6, 0.8);
+       Vrt(-20, 20, 15); Vrt(-20, 20,-15); Vrt( -20, 28,0);
+       Vrt(10, 20, 15); Vrt(10, 20,-15); Vrt( 10, 28,0);
+       glEnd ();
+    glBegin (GL_QUADS);
+       glColor3f (0.4, 0.6, 0.8);
+       Vrt(-20, 20, 15); Vrt( -20, 28,0); Vrt( 10, 28,0); Vrt(10, 20, 15);
+       Vrt(10, 20, -15); Vrt( 10, 28,0);  Vrt( -20, 28,0); Vrt(-20, 20,-15);
+       glEnd ();
+
 
        //gerbong 1
        glBegin (GL_QUADS);
