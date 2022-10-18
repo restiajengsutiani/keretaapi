@@ -8,8 +8,8 @@
 
 int proj = 1, new_mouse = 0, mouse_rot = 1, mouse_trn = 0;
 
-float turn = 50.0, tipp = 30.0, twst = 0.0, x_click = 0, y_click = 0, xtm = 0.0, ytm = 0.0,
-      scl = 1.0, xcr = 0.0;
+float turn = 20.0, tipp = 10.0, twst = 0.0, x_click = 0, y_click = 0, xtm = 0.0, ytm = 0.0,
+      scl = 0.90, xcr = 30.0;
 
 GLfloat lit1_spc[] = {0.20, 0.20,  0.15, 1.00},
         lit1_dfs[] = {0.70, 0.70,  0.65, 1.00},
@@ -25,7 +25,7 @@ GLfloat lit2_spc[] = { 0.00,  0.00,  0.00, 1.00},
 
 void Keybord (unsigned char ch, int x, int y)
 {
-    printf ("   Keyboard -> '%c' pressed.", ch);
+    printf ("   Keyboard -> '%c' ", ch);
 
     switch (ch)  {
        case 'p' :  proj      = !proj;        break;
@@ -34,6 +34,12 @@ void Keybord (unsigned char ch, int x, int y)
        case 't' :  mouse_trn = 1;
                    mouse_rot = 0;            break;
        case 'z' :  turn = 0.0; tipp = 0.0;
+                   xtm  = 0.0; ytm  = 0.0;
+                   scl  = 1.0;               break;
+       case 'y' :  turn = 90.0; tipp = 0.0;
+                   xtm  = 0.0; ytm  = 0.0;
+                   scl  = 1.0;               break;
+       case 'x' :  turn = 90.0; tipp = 90.0;
                    xtm  = 0.0; ytm  = 0.0;
                    scl  = 1.0;               break;
        case '-' :  scl *= 0.92;              break;
@@ -168,14 +174,26 @@ void Draw_Wheel (void)
        glutSolidCube (-20.0f);
     glPopMatrix();
 
-    glPushMatrix(); //rantai kiri gerbong
+    glPushMatrix(); //rantai kiri gerbong 1
        glTranslatef (50, -15.0, -17.0);
        glScalef     (1.6, 0.1,0.1);
        glutSolidCube (-20.0f);
     glPopMatrix();
 
-    glPushMatrix(); //rantai kanan gerbong
+    glPushMatrix(); //rantai kanan gerbong 1
        glTranslatef (50, -15.0, 17.0);
+       glScalef     (1.6, 0.1,0.1);
+       glutSolidCube (-20.0f);
+    glPopMatrix();
+
+    glPushMatrix(); //rantai kiri gerbong 2
+       glTranslatef (115, -15.0, -17.0);
+       glScalef     (1.6, 0.1,0.1);
+       glutSolidCube (-20.0f);
+    glPopMatrix();
+
+    glPushMatrix(); //rantai kanan gerbong 2
+       glTranslatef (115, -15.0, 17.0);
        glScalef     (1.6, 0.1,0.1);
        glutSolidCube (-20.0f);
     glPopMatrix();
@@ -226,7 +244,7 @@ void Draw_Car (void)
        Vrt(-45,0, 15); Vrt(-45,0,-15); Vrt( -20,0,-15); Vrt( -20,0, 15);  // bagasi
        glEnd ();
 
-       //gerbong
+       //gerbong 1
        glBegin (GL_QUADS);
        glColor3f (0.7, 0.6, 0.5);
        Vrt( 25, 15, 15); Vrt( 25, 15,-15); Vrt( 25,  0,-15); Vrt( 25,  0, 15); //kaca depan
@@ -246,7 +264,7 @@ void Draw_Car (void)
        Vrt(25, -15, 15); Vrt(25, -15,-15); Vrt( 75, -15,-15); Vrt( 75, -15, 15);  // bottom
     glEnd ();
 
-//       // penyambung ada dua
+       // penyambung ada dua
        glBegin (GL_QUADS);
        glColor3f (0.30,0.25,0.30);
        Vrt(10,  -11, 10); Vrt( 25,  -11, 10); Vrt(25,-14, 10); Vrt(10,-14, 10);  // kiri A
@@ -261,17 +279,41 @@ void Draw_Car (void)
        Vrt(10, -14, -7); Vrt(10, -14,-10); Vrt( 25, -14,-10); Vrt( 25, -11, -7);  // bottom B
     glEnd ();
 
-       // penyambung ada satu
-//       glColor3f (0.30,0.25,0.30);
-//       glEnable (GL_LIGHTING);
-//       glBegin (GL_QUADS);
-//
-//       glColor3f (0.30,0.25,0.30);
-//       Vrt(10,  -11, 1); Vrt( 25,  -11, 1); Vrt(25,-14, 1); Vrt(10,-14, 1);  // kiri A
-//       Vrt(10,  -11, -1); Vrt( 25,  -11, -1); Vrt(25,-14, -1); Vrt(10,-14, -1);  // kiri A
-//       Vrt(10, -11, 1); Vrt(10, -11, -1); Vrt( 25, -11, -1); Vrt( 25, -11, 1);  // roof A
-//       Vrt(10, -14, 1); Vrt(10, -14, -1); Vrt( 25, -14, -1); Vrt( 25, -11, -1);  // bottom A
-//    glEnd ();
+
+    //gerbong dua
+    glBegin (GL_QUADS);
+       glColor3f (0.7, 0.6, 0.5);
+       Vrt( 90, 15, 15); Vrt( 90, 15,-15); Vrt( 90,  0,-15); Vrt( 90,  0, 15); //kaca depan
+       Vrt( 140, 15, 15); Vrt( 140, 15,-15); Vrt( 140,  0,-15); Vrt( 140,  0, 15); //kaca belakang
+       glColor3f (0.4, 0.6, 0.6);
+       Vrt( 90,  0,-15); Vrt( 90,  0, 15); Vrt( 90,-15, 15); Vrt( 90,-15,-15); // depan
+       Vrt( 140,  0,-15); Vrt( 140,  0, 15); Vrt( 140,-15, 15); Vrt( 140,-15,-15); // belakang
+       glColor3f (0.3, 0.6, 0.6);
+       Vrt(90,  0, 15); Vrt( 140,  0, 15); Vrt(140,-15, 15); Vrt(90,-15, 15);  // kiri
+       Vrt(90,  0,-15); Vrt( 140,  0,-15); Vrt(140,-15,-15); Vrt(90,-15,-15);  // kanan
+       glColor3f (0.7, 0.7, 0.5);
+       Vrt(90,  0, 15); Vrt( 140,  0, 15); Vrt(140,15, 15); Vrt(90,15, 15);  // kaca kiri
+       Vrt(90,  0,-15); Vrt( 140,  0,-15); Vrt(140,15,-15); Vrt(90,15,-15);  // kaca kanan
+       glColor3f (0.4, 0.6, 0.8);
+       Vrt(90, 15, 15); Vrt(90, 15,-15); Vrt( 140, 15,-15); Vrt( 140, 15, 15);  // roof
+       glColor3f (0.4, 0.5, 0.5);
+       Vrt(90, -15, 15); Vrt(90, -15,-15); Vrt( 140, -15,-15); Vrt( 140, -15, 15);  // bottom
+    glEnd ();
+
+       // penyambung ada dua
+       glBegin (GL_QUADS);
+       glColor3f (0.30,0.25,0.30);
+       Vrt(75,  -11, 10); Vrt( 90,  -11, 10); Vrt(90,-14, 10); Vrt(75,-14, 10);  // kiri A
+       Vrt(75,  -11, 7); Vrt( 90,  -11, 7); Vrt(90,-14, 7); Vrt(75,-14, 7);  // kanan B
+       Vrt(75,  -11, -7); Vrt( 90,  -11, -7); Vrt(90,-14, -7); Vrt(75,-14, -7);  // kiri A
+       Vrt(75,  -11,-10); Vrt( 90,  -11,-10); Vrt(90,-14,-10); Vrt(75,-14,-10);  // kanan B
+
+       Vrt(90, -11, 10); Vrt(90, -11, 7); Vrt( 75, -11, 7); Vrt( 75, -11, 10);  // roof A
+       Vrt(90, -11, -7); Vrt(90, -11,-10); Vrt( 75, -11, -10); Vrt( 75, -11, -7);  // roof B
+
+       Vrt(90, -14, 10); Vrt(90, -14, 7); Vrt( 75, -14, 7); Vrt( 75, -14, 10);  // bottom A
+       Vrt(90, -14, -7); Vrt(90, -14,-10); Vrt( 75, -14,-10); Vrt( 75, -14, -7);  // bottom B
+    glEnd ();
 
 
 
@@ -284,11 +326,17 @@ void Draw_Car (void)
      Render_WheelB ( -2.5,-13, 17);
      Render_WheelB ( 2.5,-13,-17);
 
-     //roda gerbong
+     //roda gerbong 1
      Render_Wheel (35,-15, 17);
      Render_Wheel (35,-15,-17);
      Render_Wheel (65,-15, 17);
      Render_Wheel (65,-15,-17);
+
+     //roda gerbong 1
+     Render_Wheel (100,-15, 17);
+     Render_Wheel (100,-15,-17);
+     Render_Wheel (130,-15, 17);
+     Render_Wheel (130,-15,-17);
 
 }
 
@@ -338,7 +386,7 @@ void Init_GL (void)
     glColorMaterial (GL_AMBIENT_AND_DIFFUSE, GL_FRONT);
     glColorMaterial (GL_SPECULAR           , GL_FRONT);
 
-    glClearColor (0.2, 0.3, 0.3, 1.0);
+    glClearColor (0.2, 0.3, 0.3.5, 1.0);
 }
 
 //----------------------------------------   Init_Glut   -------------------------------------------
@@ -346,9 +394,9 @@ void Init_GL (void)
 int Init_Glut (void)
 {
     glutInitDisplayMode    (GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-    glutInitWindowPosition (100, 100);
+    glutInitWindowPosition (10, 10);
     glutInitWindowSize     (800, 800);
-    glutCreateWindow       ("Kereta");
+    glutCreateWindow       ("Kereta Api - Kelompok 3");
 
     glutKeyboardFunc (Keybord);
     glutDisplayFunc  (Display);
