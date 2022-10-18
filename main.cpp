@@ -9,7 +9,7 @@
 int proj = 1, new_mouse = 0, mouse_rot = 1, mouse_trn = 0;
 
 float turn = 20.0, tipp = 10.0, twst = 0.0, x_click = 0, y_click = 0, xtm = 0.0, ytm = 0.0,
-      scl = 0.90, xcr = 30.0;
+      scl = 0.80, xcr = 30.0;
 
 GLfloat lit1_spc[] = {0.20, 0.20,  0.15, 1.00},
         lit1_dfs[] = {0.70, 0.70,  0.65, 1.00},
@@ -137,20 +137,20 @@ void Draw_Rail (void)
 
     glPushMatrix();
        glTranslatef (15.0, -26.0, 0.0);
-       glScalef     (10.0, 0.3,3.0);
+       glScalef     (13.0, 0.3,3.0);
        glutSolidCube (-20.0f);
     glPopMatrix();
 
     glColor3f (0.40,0.35,0.30);
     glPushMatrix();
        glTranslatef (15.0, -25.0, 17.0);
-       glScalef     (9.5, 0.3,0.1);
+       glScalef     (12.5, 0.3,0.1);
        glutSolidCube (-20.0f);
     glPopMatrix();
 
     glPushMatrix();
        glTranslatef (15.0, -25.0, -17.0);
-       glScalef     (9.5, 0.3,0.1);
+       glScalef     (12.5, 0.3,0.1);
        glutSolidCube (-20.0f);
     glPopMatrix();
 }
@@ -386,7 +386,7 @@ void Init_GL (void)
     glColorMaterial (GL_AMBIENT_AND_DIFFUSE, GL_FRONT);
     glColorMaterial (GL_SPECULAR           , GL_FRONT);
 
-    glClearColor (0.2, 0.3, 0.3.5, 1.0);
+    glClearColor (0.2, 0.3, 0.35, 1.0);
 }
 
 //----------------------------------------   Init_Glut   -------------------------------------------
