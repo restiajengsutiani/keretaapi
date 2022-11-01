@@ -21,9 +21,9 @@ GLfloat lit2_spc[] = { 0.00,  0.00,  0.00, 1.00},
 		lit2_amb[] = { 0.20,  0.20,  0.25, 1.00},
 		lit2_pos[] = { 1.50, -2.00, -4.00, 0.01};
 
-//-----------------------------------------   Keybord   --------------------------------------------
+//-----------------------------------------   Keyboard   --------------------------------------------
 
-void Keybord (unsigned char ch, int x, int y)
+void Keyboard (unsigned char ch, int x, int y)
 {
     printf ("   Keyboard -> '%c' ", ch);
 
@@ -53,8 +53,7 @@ void Keybord (unsigned char ch, int x, int y)
     glutPostRedisplay();
 }
 
-//--+----4----+----3----+----2----+----1----+----|----+----1----+----2----+----3----+----4----+----5
-//------------------------------------------   Mouse   ---------------------------------------------
+//-------------------- Mouse --------------------//
 
 void Mouse (int button, int state, int x, int y)
 {
@@ -64,8 +63,7 @@ void Mouse (int button, int state, int x, int y)
     new_mouse = 1;
 }
 
-//--+----4----+----3----+----2----+----1----+----|----+----1----+----2----+----3----+----4----+----5
-//------------------------------------------   Motion   --------------------------------------------
+//-------------------- Motion --------------------//
 
 void Motion (int x, int y)
 {
@@ -74,7 +72,7 @@ void Motion (int x, int y)
     static int c = 0, x_sav, y_sav;
     static float turn_save = 0.0, tipp_save = 0.0;
 
-    // printf ("   Motion:  %5d ->   x = %5d, y = %5d.
+    //printf ("   Motion:  %5d ->   x = %5d, y = %5d.");
 
     if (new_mouse)  {
        new_mouse = 0;
@@ -128,11 +126,11 @@ void Init_Lights (void)
     glEnable (GL_NORMALIZE  );
 }
 
-//----------------------------------------   Draw_Rail   -------------------------------------------
+//----------------------------------------   Rel   -------------------------------------------
 
-void Draw_Rail (void)
+void Rel (void)
 {
-    glColor3f (0.40,0.55,0.60);
+    glColor3f (0.40,0.55,0.60); //jalan
     glEnable (GL_LIGHTING);
 
     glPushMatrix();
@@ -141,7 +139,7 @@ void Draw_Rail (void)
        glutSolidCube (-20.0f);
     glPopMatrix();
 
-    glColor3f (0.40,0.35,0.30);
+    glColor3f (0.40,0.35,0.30); //rail
     glPushMatrix();
        glTranslatef (15.0, -25.0, 17.0);
        glScalef     (12.5, 0.3,0.1);
@@ -157,7 +155,7 @@ void Draw_Rail (void)
 
 //-------------------------penyambung roda----------------
 
-void Draw_Wheel (void)
+void Penyambung_roda (void)
 {
     glColor3f (0.2,0.2,0.25);
     glEnable (GL_LIGHTING);
@@ -200,9 +198,9 @@ void Draw_Wheel (void)
 }
 
 
-//---------------------------------------   Render_Wheel   -----------------------------------------
+//---------------------------------------   Ban   -----------------------------------------
 
-void Render_Wheel (int xt, int yt, int zt)
+void Ban_kecil (int xt, int yt, int zt)
 {
     glPushMatrix();
        glTranslatef   (xt, yt, zt);
@@ -210,49 +208,49 @@ void Render_Wheel (int xt, int yt, int zt)
     glPopMatrix();
 }
 
-void Render_WheelB (int xt, int yt, int zt)
+void Ban_besar (int xt, int yt, int zt)
 {
     glPushMatrix();
        glTranslatef   (xt, yt, zt);
-       glutSolidTorus (2,7,12,36);
+       glutSolidTorus (2,7,15,36);
     glPopMatrix();
 }
 
-//-----------------------------------------   Draw_Car   -------------------------------------------
+//-----------------------------------------   Kereta   -------------------------------------------
 
-void Draw_Car (void)
+void Kereta (void)
 {
-    glDisable (GL_LIGHTING);
+    glEnable (GL_LIGHTING);
 
-    // gerb0ng depan
+    // gerbong depan
     glBegin (GL_QUADS);
        glColor3f (0.3, 0.6, 0.6);
-       Vrt(-45,  0, 15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt(-50,-15, 15);  // left
-       Vrt(-45,  0,-15); Vrt( 10,  0,-15); Vrt( 10,-15,-15); Vrt(-50,-15,-15);  // right
+       Vrt(-45,  0, 15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt(-50,-15, 15);  // kiri
+       Vrt(-45,  0,-15); Vrt( 10,  0,-15); Vrt( 10,-15,-15); Vrt(-50,-15,-15);  // kanan
        glColor3f (0.4, 0.6, 0.6);
-       Vrt( 10,  0,-15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt( 10,-15,-15);  // back
-       Vrt(-45,  0,-15); Vrt(-45,  0, 15); Vrt(-50,-15, 15); Vrt(-50,-15,-15);  // front
+       Vrt( 10,  0,-15); Vrt( 10,  0, 15); Vrt( 10,-15, 15); Vrt( 10,-15,-15);  // belakang
+       Vrt(-45,  0,-15); Vrt(-45,  0, 15); Vrt(-50,-15, 15); Vrt(-50,-15,-15);  // depan
        glColor3f (0.7, 0.7, 0.5);
-       Vrt(-20,  0, 15); Vrt(-20, 20, 15); Vrt( 10, 20, 15); Vrt( 10,  0, 15);  // window l
-       Vrt(-20,  0,-15); Vrt(-20, 20,-15); Vrt( 10, 20,-15); Vrt( 10,  0,-15);  // window r
+       Vrt(-20,  0, 15); Vrt(-20, 20, 15); Vrt( 10, 20, 15); Vrt( 10,  0, 15);  // jendela kiri
+       Vrt(-20,  0,-15); Vrt(-20, 20,-15); Vrt( 10, 20,-15); Vrt( 10,  0,-15);  // jendela kanan
        glColor3f (0.7, 0.6, 0.5);
        Vrt(-20, 20, 15); Vrt(-20,  0, 15); Vrt(-20,  0,-15); Vrt(-20, 20,-15);  // kaca depan
        Vrt( 10, 20, 15); Vrt( 10, 20,-15); Vrt( 10,  0,-15); Vrt( 10,  0, 15);  // kaca belakang
        glColor3f (0.4, 0.5, 0.5);
-       Vrt(-50,-15, 15); Vrt(-50,-15,-15); Vrt( 10,-15,-15); Vrt( 10,-15, 15);  // bottom
+       Vrt(-50,-15, 15); Vrt(-50,-15,-15); Vrt( 10,-15,-15); Vrt( 10,-15, 15);  // bawah
        Vrt(-45,0, 15); Vrt(-45,0,-15); Vrt( -20,0,-15); Vrt( -20,0, 15);  // bagasi
        glEnd ();
 
        //atap gerbong depan
     glBegin (GL_TRIANGLES);
-       glColor3f (0.4, 0.6, 0.8);
-       Vrt(-20, 20, 15); Vrt(-20, 20,-15); Vrt( -20, 28,0);
-       Vrt(10, 20, 15); Vrt(10, 20,-15); Vrt( 10, 28,0);
+       glColor3f (0.38, 0.55, 0.75);
+       Vrt(-20, 20, 15); Vrt(-20, 20,-15); Vrt( -20, 28,0); //depan
+       Vrt(10, 20, 15); Vrt(10, 20,-15); Vrt( 10, 28,0);    //belakang
        glEnd ();
     glBegin (GL_QUADS);
        glColor3f (0.4, 0.6, 0.8);
-       Vrt(-20, 20, 15); Vrt( -20, 28,0); Vrt( 10, 28,0); Vrt(10, 20, 15);
-       Vrt(10, 20, -15); Vrt( 10, 28,0);  Vrt( -20, 28,0); Vrt(-20, 20,-15);
+       Vrt(-20, 20, 15); Vrt( -20, 28,0); Vrt( 10, 28,0); Vrt(10, 20, 15); //kiri
+       Vrt(10, 20, -15); Vrt( 10, 28,0);  Vrt( -20, 28,0); Vrt(-20, 20,-15); //kanan
        glEnd ();
 
 
@@ -271,9 +269,9 @@ void Draw_Car (void)
        Vrt(25,  0, 15); Vrt( 75,  0, 15); Vrt(75,15, 15); Vrt(25,15, 15);  // kaca kiri
        Vrt(25,  0,-15); Vrt( 75,  0,-15); Vrt(75,15,-15); Vrt(25,15,-15);  // kaca kanan
        glColor3f (0.4, 0.6, 0.8);
-       Vrt(25, 15, 15); Vrt(25, 15,-15); Vrt( 75, 15,-15); Vrt( 75, 15, 15);  // roof
+       Vrt(25, 15, 15); Vrt(25, 15,-15); Vrt( 75, 15,-15); Vrt( 75, 15, 15);  // atap
        glColor3f (0.4, 0.5, 0.5);
-       Vrt(25, -15, 15); Vrt(25, -15,-15); Vrt( 75, -15,-15); Vrt( 75, -15, 15);  // bottom
+       Vrt(25, -15, 15); Vrt(25, -15,-15); Vrt( 75, -15,-15); Vrt( 75, -15, 15);  // bawah
     glEnd ();
 
        // penyambung ada dua
@@ -284,11 +282,11 @@ void Draw_Car (void)
        Vrt(10,  -11, -7); Vrt( 25,  -11, -7); Vrt(25,-14, -7); Vrt(10,-14, -7);  // kiri A
        Vrt(10,  -11,-10); Vrt( 25,  -11,-10); Vrt(25,-14,-10); Vrt(10,-14,-10);  // kanan B
 
-       Vrt(10, -11, 10); Vrt(10, -11, 7); Vrt( 25, -11, 7); Vrt( 25, -11, 10);  // roof A
-       Vrt(10, -11, -7); Vrt(10, -11,-10); Vrt( 25, -11, -10); Vrt( 25, -11, -7);  // roof B
+       Vrt(10, -11, 10); Vrt(10, -11, 7); Vrt( 25, -11, 7); Vrt( 25, -11, 10);  // atas A
+       Vrt(10, -11, -7); Vrt(10, -11,-10); Vrt( 25, -11, -10); Vrt( 25, -11, -7);  // atas B
 
-       Vrt(10, -14, 10); Vrt(10, -14, 7); Vrt( 25, -14, 7); Vrt( 25, -11, 7);  // bottom A
-       Vrt(10, -14, -7); Vrt(10, -14,-10); Vrt( 25, -14,-10); Vrt( 25, -11, -7);  // bottom B
+       Vrt(10, -14, 10); Vrt(10, -14, 7); Vrt( 25, -14, 7); Vrt( 25, -11, 7);  // bawah A
+       Vrt(10, -14, -7); Vrt(10, -14,-10); Vrt( 25, -14,-10); Vrt( 25, -11, -7);  // bawah B
     glEnd ();
 
 
@@ -307,9 +305,9 @@ void Draw_Car (void)
        Vrt(90,  0, 15); Vrt( 140,  0, 15); Vrt(140,15, 15); Vrt(90,15, 15);  // kaca kiri
        Vrt(90,  0,-15); Vrt( 140,  0,-15); Vrt(140,15,-15); Vrt(90,15,-15);  // kaca kanan
        glColor3f (0.4, 0.6, 0.8);
-       Vrt(90, 15, 15); Vrt(90, 15,-15); Vrt( 140, 15,-15); Vrt( 140, 15, 15);  // roof
+       Vrt(90, 15, 15); Vrt(90, 15,-15); Vrt( 140, 15,-15); Vrt( 140, 15, 15);  // atap
        glColor3f (0.4, 0.5, 0.5);
-       Vrt(90, -15, 15); Vrt(90, -15,-15); Vrt( 140, -15,-15); Vrt( 140, -15, 15);  // bottom
+       Vrt(90, -15, 15); Vrt(90, -15,-15); Vrt( 140, -15,-15); Vrt( 140, -15, 15);  // bawah
     glEnd ();
 
        // penyambung ada dua
@@ -329,26 +327,27 @@ void Draw_Car (void)
 
 
 
-    // Render wheels using torus's with lighting on.
+    // Ban
 
      glEnable     (GL_LIGHTING);
      glColor3f    (0.3, 0.3, 0.3);
-     Render_Wheel (-35,-15, 17);
-     Render_Wheel (-35,-15,-17);
-     Render_WheelB ( -2.5,-13, 17);
-     Render_WheelB ( 2.5,-13,-17);
+     //roda gerbong depan
+     Ban_kecil (-35,-15, 17);
+     Ban_kecil (-35,-15,-17);
+     Ban_besar ( -2.5,-13, 17);
+     Ban_besar ( -2.5,-13,-17);
 
      //roda gerbong 1
-     Render_Wheel (35,-15, 17);
-     Render_Wheel (35,-15,-17);
-     Render_Wheel (65,-15, 17);
-     Render_Wheel (65,-15,-17);
+     Ban_kecil (35,-15, 17);
+     Ban_kecil (35,-15,-17);
+     Ban_kecil (65,-15, 17);
+     Ban_kecil (65,-15,-17);
 
-     //roda gerbong 1
-     Render_Wheel (100,-15, 17);
-     Render_Wheel (100,-15,-17);
-     Render_Wheel (130,-15, 17);
-     Render_Wheel (130,-15,-17);
+     //roda gerbong 2
+     Ban_kecil (100,-15, 17);
+     Ban_kecil (100,-15,-17);
+     Ban_kecil (130,-15, 17);
+     Ban_kecil (130,-15,-17);
 
 }
 
@@ -377,10 +376,10 @@ void Display (void)
     glScalef     (scl, scl, scl );       // Scale world relative to its origin.
     glScalef     (0.02, 0.02, 0.02);
 
-    Draw_Rail ();
+    Rel ();
     glTranslatef (-xcr, 0.0, 0.0);
-    Draw_Wheel ();
-    Draw_Car  ();
+    Penyambung_roda ();
+    Kereta  ();
 
     glutSwapBuffers();
 }
@@ -398,7 +397,7 @@ void Init_GL (void)
     glColorMaterial (GL_AMBIENT_AND_DIFFUSE, GL_FRONT);
     glColorMaterial (GL_SPECULAR           , GL_FRONT);
 
-    glClearColor (0.2, 0.3, 0.35, 1.0);
+    glClearColor (0.53, 0.12, 0.47, 1.0); //background color
 }
 
 //----------------------------------------   Init_Glut   -------------------------------------------
@@ -410,7 +409,7 @@ int Init_Glut (void)
     glutInitWindowSize     (800, 800);
     glutCreateWindow       ("Kereta Api - Kelompok 3");
 
-    glutKeyboardFunc (Keybord);
+    glutKeyboardFunc (Keyboard);
     glutDisplayFunc  (Display);
     glutMouseFunc    (Mouse  );
     glutMotionFunc   (Motion );
