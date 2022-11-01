@@ -5,10 +5,10 @@
 	<GL/gl.h>
 	<stdlib.h>
 
-1426322040 c:\program files\codeblocks\mingw\include\gl\glut.h
+1426320928 c:\program files\codeblocks\mingw\include\gl\glut.h
 	"freeglut_std.h"
 
-1437529542 c:\program files\codeblocks\mingw\include\gl\freeglut_std.h
+1426320928 c:\program files\codeblocks\mingw\include\gl\freeglut_std.h
 	<windows.h>
 	<EGL/egl.h>
 	<GLES/gl.h>
@@ -26,7 +26,7 @@
 	<time.h>
 	<GL/glut.h>
 
-1665840845 source:c:\users\wahab\documents\grafika komputer\kereta_api_e1e121045_agrian wahab\keretaapi\main.cpp
+1667313128 source:c:\users\wahab\documents\grafika komputer\kereta_api_e1e121045_agrian wahab\keretaapi\main.cpp
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
