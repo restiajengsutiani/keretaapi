@@ -397,7 +397,7 @@ void Init_GL (void)
     glColorMaterial (GL_AMBIENT_AND_DIFFUSE, GL_FRONT);
     glColorMaterial (GL_SPECULAR           , GL_FRONT);
 
-    glClearColor (0.53, 0.12, 0.47, 1.0); //background color
+    glClearColor (1, 1, 1, 1); //background color
 }
 
 //----------------------------------------   Init_Glut   -------------------------------------------
